@@ -1,2 +1,2 @@
 # B.A.L.L.S
-Binary Artificial Learning Logic System
+Binary Adaptive Linear neural network Logic System
