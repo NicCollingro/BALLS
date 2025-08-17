@@ -44,7 +44,7 @@ always @(posedge CLOCK_50) begin
 end
 endmodule
 
-module gammanorm (
+module norm (
     input wire signed [9:0] weights[19:0], 
     input wire signed [9:0] gamma,          
     output reg signed [9:0] result          
@@ -61,6 +61,7 @@ module gammanorm (
             sumquad = sumquad + quad; 
         end
     end
+
 endmodule
 
 module sqrt(
