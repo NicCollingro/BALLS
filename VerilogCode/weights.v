@@ -29,10 +29,10 @@ module weights(
         end
     endgenerate
 
-    reg [8:0] norm_r = 0;
+    reg [10:0] norm_r = 0;
 
     // hier normer einfügen
-    wire [8:0] norm_w;
+    wire [10:0] norm_w;
     norm normer (
         .weights(weight_out),
         .norm(norm_w)

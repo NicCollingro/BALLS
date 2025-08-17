@@ -1,26 +1,25 @@
 module norm (
     input wire [179:0] weights,
-    output wire [8:0] norm
+    output wire [10:0] norm
 );
-    wire [7:0] sums [17:0]
+    wire [14:0] sums [19:0];
+    genvar i;
     generate
-        genvar i;
-        for (i = 0; i < 20; i) begin : squares
-            wire [15:0] square_val = weights[7+(i*10):0+(i*10)] * weights[7+(i*10):0+(i*10)];
-        end
-        assign sums[0] = (squares[0].square_val + squares[1].square_val < 255) ?
-            squares[0].square_val + squares[1].square_val :
-                16'b255;
-        for (i = 0; i < 18; i) begin : squares
-            assign sums[i] = (sums[i] + squares[i+1].square_val < 255) ?
-                sums[i] + squares[i+1].square_val :
-                    16'b255;
+        wire [7:0] base0 = weights[7:0];
+        wire [15:0] square0 = base0 * base0;
+        assign sums[0] = square0;
+
+        for (i = 1; i<20; i = i+1) begin : sq_sum
+            wire [7:0] base = weights[9*i+7 -: 8];
+            wire [14:0] square = base * base;
+            wire [14:0] res = sums[i-1] +square;
+            assign sums[i] = res;
         end
     endgenerate
 
-    wire [7:0] mag_norm;
+    wire [9:0] mag_norm;
     sqrt norm_val (
-        .in(sums[17]),
+        .in(sums[19]),
         .out(mag_norm)
     );
     assign norm = {1'b0, mag_norm};
