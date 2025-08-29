@@ -4,6 +4,8 @@ module prediction(
     output wire [9:0] y
 );
     wire signed [9:0] weights [0:19];
+
+    generate
     genvar j;
     for (j = 0; j < 20; j = j + 1) begin : unpacking_weights
         assign weights[j] = weights_packed[(10*j) +:10];
@@ -20,6 +22,7 @@ module prediction(
     for (j = 1; j < 20; j = j + 1) begin : sum_chain
         assign sums[j] = sums[j-1] + weights[j] * xalt[j];
     end
+    endgenerate
 
     assign y = sums[19];
 endmodule

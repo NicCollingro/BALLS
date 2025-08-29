@@ -8,6 +8,7 @@ module weight_module (
     // IMPORTANT: Braucht mindestens 8 Bruchbits für's lernen
     reg signed [9:0] weights [0:19];
 
+    generate
     genvar j;
     for (j = 0; j<20; j = j + 1) begin : packing_weights
         wire signed [9:0] debug = weights[j];
@@ -18,6 +19,7 @@ module weight_module (
     for (j = 0; j < 20; j = j + 1) begin : unpack_neurons
        assign neurons[j] = xalt[j*2 +: 2];
     end
+    endgenerate
 
     integer i;
     reg signed [3:0] const = 4'd7;

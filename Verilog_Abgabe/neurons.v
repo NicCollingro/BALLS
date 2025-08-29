@@ -6,10 +6,12 @@ module neurons(
 );
     reg signed [1:0] xalt [0:19];
 
+    generate
     genvar j;
-    for (j = 0; j < 20; j = j + 1) begin
+    for (j = 0; j < 20; j = j + 1) begin : xalt_packing
         assign xalt_packed[j*2 +: 2] = xalt[j];
     end
+    endgenerate
 
     integer i;
     always @(posedge rst or posedge update_clk) begin
