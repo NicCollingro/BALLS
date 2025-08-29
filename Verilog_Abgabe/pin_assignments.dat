@@ -31,7 +31,7 @@ set_location_assignment PIN_E1  -to key1
 
 # GPIO
 set_location_assignment PIN_A8  -to GPIO_0_IN0
-set_location_assignment PIN_D3  -to GPIO_00
+set_location_assignment PIN_D3  -to GPIO_000
 set_location_assignment PIN_B8  -to GPIO_0_IN1
 set_location_assignment PIN_C3  -to GPIO_001
 set_location_assignment PIN_A2  -to GPIO_002
