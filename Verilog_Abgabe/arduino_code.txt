@@ -4,7 +4,7 @@ const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
-const int busPins[] = {52, 50, 48, 46, 44, 42, 40, 38, 36};
+const int busPins[] = {52, 50, 48, 46, 44, 42, 40, 38};
 const int numPins = sizeof(busPins) / sizeof(busPins[0]);
 
 void setup() {
@@ -28,7 +28,7 @@ void loop() {
   }
 
   // Zahl als String
-  String s = String((value/256)*100);
+  String s = String((value*100 / 256));
 
   // Auf LCD anzeigen
   lcd.setCursor(0, 1);
